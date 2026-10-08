@@ -8,9 +8,7 @@ const toTop=document.createElement('button');toTop.id='to-top';toTop.type='butto
  const files=[{name:'intro-ravda.mp4',title:'Почувствуйте атмосферу RAVDA',intro:true},{name:'ravda-moments.mp4',title:'Тёплые моменты нашего сада'},{name:'ravda-care.mp4',title:'Забота в каждом дне'},{name:'ravda-day.mp4',title:'Один день в RAVDA'}];
  const gallery=document.querySelector('.life-gallery');
  for(const item of files){
-  const path='assets/'+item.name;let available=false;
-  try{const response=await fetch(path,{method:'HEAD'});available=response.ok&&response.headers.get('content-type')?.includes('video')}catch(e){}
-  if(!available)continue;
+  const path='assets/'+item.name;// Файлы подтверждены в репозитории; не блокируем показ из-за HEAD/Content-Type.
   if(item.intro){
    const video=document.querySelector('#intro-video');if(video){video.src=path;video.load();const title=document.querySelector('#intro-trigger strong');if(title)title.textContent=item.title;const time=document.querySelector('#intro-time');if(time)time.textContent='0:00 / 0:13';}
    continue;
